@@ -1,7 +1,6 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, MeshDistortMaterial, Line } from "@react-three/drei";
 import { useRef, useMemo } from "react";
 import * as THREE from "three";
 
@@ -20,19 +19,6 @@ function NetworkNodes() {
     return positions;
   }, []);
 
-  const connections = useMemo(() => {
-    const lines: [THREE.Vector3, THREE.Vector3][] = [];
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dist = new THREE.Vector3(...nodes[i]).distanceTo(new THREE.Vector3(...nodes[j]));
-        if (dist < 3.5) {
-          lines.push([new THREE.Vector3(...nodes[i]), new THREE.Vector3(...nodes[j])]);
-        }
-      }
-    }
-    return lines;
-  }, [nodes]);
-
   useFrame((state) => {
     if (groupRef.current) {
       groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.1) * 0.3;
@@ -43,23 +29,16 @@ function NetworkNodes() {
   return (
     <group ref={groupRef}>
       {nodes.map((pos, i) => (
-        <Float key={i} speed={1.5 + Math.random()} rotationIntensity={0.2} floatIntensity={0.5}>
-          <mesh position={pos}>
-            <boxGeometry args={[0.15 + Math.random() * 0.2, 0.15 + Math.random() * 0.2, 0.15 + Math.random() * 0.2]} />
-            <MeshDistortMaterial
-              color={i % 3 === 0 ? "#10b981" : i % 3 === 1 ? "#059669" : "#34d399"}
-              emissive={i % 3 === 0 ? "#10b981" : "#059669"}
-              emissiveIntensity={0.5}
-              roughness={0.3}
-              metalness={0.8}
-              distort={0.2}
-              speed={2}
-            />
-          </mesh>
-        </Float>
-      ))}
-      {connections.map((pts, i) => (
-        <Line key={`line-${i}`} points={pts} color="#10b981" lineWidth={1} opacity={0.15} transparent />
+        <mesh key={i} position={pos}>
+          <boxGeometry args={[0.15 + Math.random() * 0.2, 0.15 + Math.random() * 0.2, 0.15 + Math.random() * 0.2]} />
+          <meshStandardMaterial
+            color={i % 3 === 0 ? "#10b981" : i % 3 === 1 ? "#059669" : "#34d399"}
+            emissive={i % 3 === 0 ? "#10b981" : "#059669"}
+            emissiveIntensity={0.5}
+            roughness={0.3}
+            metalness={0.8}
+          />
+        </mesh>
       ))}
     </group>
   );
