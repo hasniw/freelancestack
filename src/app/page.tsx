@@ -24,53 +24,58 @@ export default function Home() {
       />
 
       {/* Hero */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
         <HeroScene />
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <div className="glass rounded-2xl p-10 md:p-14">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent leading-tight">
-              Les meilleurs outils pour freelances 🇫🇷
+          <div className="glass rounded-3xl p-10 md:p-16">
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-5 py-2 mb-8 text-sm text-emerald-400">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              Pour les freelances français
+            </div>
+            <h1 className="text-4xl md:text-6xl font-extrabold mb-8 font-display bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent leading-tight">
+              Les meilleurs outils pour freelances
             </h1>
-            <p className="text-lg md:text-xl text-stone-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-stone-400 mb-12 max-w-2xl mx-auto leading-relaxed">
               Comparatifs, avis et guides pour choisir vos outils de comptabilité, banque, facturation, assurance et plus.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Link
                 href="/outils"
-                className="btn-gradient text-white font-semibold px-8 py-3.5 rounded-xl text-lg animate-pulse-glow"
+                className="group btn-gradient text-white font-semibold px-8 py-4 rounded-2xl text-lg inline-flex items-center gap-2"
               >
                 Voir les outils
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
               </Link>
               <Link
                 href="/comparateur"
-                className="border border-white/10 text-stone-300 font-semibold px-8 py-3.5 rounded-xl text-lg hover:bg-white/5 transition backdrop-blur"
+                className="border border-white/10 text-stone-300 font-semibold px-8 py-4 rounded-2xl text-lg hover:bg-white/5 transition-all backdrop-blur"
               >
                 Comparer
               </Link>
             </div>
           </div>
         </div>
-        {/* Gradient overlay at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent z-10" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0a0a0a] to-transparent z-10" />
       </section>
 
       {/* Categories */}
-      <section className="max-w-6xl mx-auto px-4 py-20">
+      <section className="max-w-6xl mx-auto px-4 py-24">
         <ScrollFadeIn>
-          <h2 className="text-3xl font-bold mb-10 text-center text-stone-100">
+          <p className="text-emerald-400 text-sm font-semibold tracking-wide uppercase mb-2 text-center">Parcourir</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-center text-stone-100 font-display">
             Catégories
           </h2>
-          <div className="grid md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {categories.map((c) => (
               <Link
                 key={c.slug}
                 href={`/categories/${c.slug}`}
-                className="glass-card rounded-xl p-5 text-center group"
+                className="card-emerald glass-card rounded-2xl p-6 text-center group"
               >
                 <div className="font-semibold text-stone-200 group-hover:text-emerald-400 transition-colors">
                   {c.name}
                 </div>
-                <div className="text-xs text-stone-600 mt-2">
+                <div className="text-xs text-stone-600 mt-3">
                   {tools.filter((t) => t.categorySlug === c.slug).length} outils
                 </div>
               </Link>
@@ -80,47 +85,50 @@ export default function Home() {
       </section>
 
       {/* Top tools */}
-      <section className="bg-[#0d1117] py-20">
+      <section className="bg-[#0d1117]/50 py-24">
         <div className="max-w-6xl mx-auto px-4">
           <ScrollFadeIn>
-            <h2 className="text-3xl font-bold mb-10 text-center text-stone-100">
+            <p className="text-emerald-400 text-sm font-semibold tracking-wide uppercase mb-2 text-center">Sélection</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-center text-stone-100 font-display">
               Outils populaires
             </h2>
           </ScrollFadeIn>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5">
             {tools.slice(0, 6).map((tool, i) => (
-              <ScrollFadeIn key={tool.slug} delay={i * 100}>
+              <ScrollFadeIn key={tool.slug} delay={i * 80}>
                 <ToolCard tool={tool} />
               </ScrollFadeIn>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Link href="/outils" className="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors text-lg">
-              Voir tous les outils →
+          <div className="text-center mt-14">
+            <Link href="/outils" className="group inline-flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition-colors text-lg">
+              Voir tous les outils
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </Link>
           </div>
         </div>
       </section>
 
       {/* Blog */}
-      <section className="py-20">
+      <section className="py-24">
         <div className="max-w-6xl mx-auto px-4">
           <ScrollFadeIn>
-            <h2 className="text-3xl font-bold mb-10 text-center text-stone-100">
+            <p className="text-emerald-400 text-sm font-semibold tracking-wide uppercase mb-2 text-center">Ressources</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-center text-stone-100 font-display">
               Derniers articles
             </h2>
           </ScrollFadeIn>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5">
             {blogPosts.slice(0, 3).map((post, i) => (
-              <ScrollFadeIn key={post.slug} delay={i * 100}>
+              <ScrollFadeIn key={post.slug} delay={i * 80}>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="glass-card rounded-xl p-6 block group"
+                  className="card-emerald glass-card rounded-2xl p-7 block group"
                 >
-                  <div className="text-xs text-stone-600 mb-3">
+                  <div className="text-xs text-stone-600 mb-4">
                     {post.date} · {post.readTime}
                   </div>
-                  <div className="font-bold text-stone-200 mb-3 group-hover:text-emerald-400 transition-colors">
+                  <div className="font-bold text-lg text-stone-200 mb-3 group-hover:text-emerald-400 transition-colors font-display">
                     {post.title}
                   </div>
                   <div className="text-sm text-stone-500 leading-relaxed">
@@ -130,9 +138,10 @@ export default function Home() {
               </ScrollFadeIn>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Link href="/blog" className="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors text-lg">
-              Tous les articles →
+          <div className="text-center mt-14">
+            <Link href="/blog" className="group inline-flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition-colors text-lg">
+              Tous les articles
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </Link>
           </div>
         </div>
