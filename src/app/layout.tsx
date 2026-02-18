@@ -11,14 +11,21 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "FreelanceStack — Les meilleurs outils pour freelances",
+  title: {
+    default: "FreelanceStack — Les meilleurs outils pour freelances",
+    template: "%s | FreelanceStack",
+  },
   description: "Comparatif et avis sur les meilleurs outils pour freelances français : comptabilité, banque pro, facturation, assurance, portage salarial.",
   metadataBase: new URL("https://freelancestack.vercel.app"),
   openGraph: {
     title: "FreelanceStack — Les meilleurs outils pour freelances",
     description: "Comparatif et avis sur les meilleurs outils pour freelances français.",
     type: "website",
+    locale: "fr_FR",
+    siteName: "FreelanceStack",
   },
+  twitter: { card: "summary_large_image" },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
