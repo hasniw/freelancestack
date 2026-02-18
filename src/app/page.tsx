@@ -11,18 +11,30 @@ const HeroScene = dynamic(() => import("@/components/HeroScene"), { ssr: false }
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: "FreelanceStack",
-            url: "https://freelancestack.vercel.app",
-            description: "Les meilleurs outils pour freelances français",
-          }),
-        }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org", "@type": "Organization",
+        name: "FreelanceStack", url: "https://freelancestack.vercel.app",
+        description: "Les meilleurs outils pour freelances français"
+      }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Accueil", item: "https://freelancestack.vercel.app" },
+          { "@type": "ListItem", position: 2, name: "Outils", item: "https://freelancestack.vercel.app/outils" },
+          { "@type": "ListItem", position: 3, name: "Comparateur", item: "https://freelancestack.vercel.app/comparateur" },
+          { "@type": "ListItem", position: 4, name: "Blog", item: "https://freelancestack.vercel.app/blog" }
+        ]
+      }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org", "@type": "FAQPage",
+        mainEntity: [
+          { "@type": "Question", name: "Quel est le meilleur logiciel de comptabilité pour freelance ?", acceptedAnswer: { "@type": "Answer", text: "Indy, Pennylane et Freebe sont les plus populaires. Indy est idéal pour les micro-entrepreneurs, Pennylane pour ceux qui veulent un expert-comptable intégré." }},
+          { "@type": "Question", name: "Quelle banque pro choisir en freelance ?", acceptedAnswer: { "@type": "Answer", text: "Qonto, Shine et Revolut Business sont les choix principaux. Shine est pensé pour les indépendants, Qonto offre plus de fonctionnalités pour les structures plus grandes." }},
+          { "@type": "Question", name: "Faut-il une assurance RC Pro en freelance ?", acceptedAnswer: { "@type": "Answer", text: "Elle n'est pas toujours obligatoire mais fortement recommandée. Hiscox et Simplis proposent des offres adaptées aux freelances à partir de 15€/mois." }},
+          { "@type": "Question", name: "Portage salarial ou micro-entreprise ?", acceptedAnswer: { "@type": "Answer", text: "La micro-entreprise est plus simple et moins chère. Le portage salarial offre la protection du salariat (chômage, retraite) mais prend 5-10% de commission." }},
+          { "@type": "Question", name: "Comment facturer en tant que freelance ?", acceptedAnswer: { "@type": "Answer", text: "Utilisez un outil de facturation comme Freebe, Henrri ou Indy. Les mentions obligatoires incluent le numéro SIRET, les conditions de paiement et la TVA si applicable." }}
+        ]
+      }) }} />
 
       {/* Hero */}
       <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
@@ -144,6 +156,32 @@ export default function Home() {
               Tous les articles
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-24">
+        <div className="max-w-3xl mx-auto px-4">
+          <ScrollFadeIn>
+            <p className="text-emerald-400 text-sm font-semibold tracking-wide uppercase mb-2 text-center">FAQ</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-center text-stone-100 font-display">Questions fréquentes</h2>
+          </ScrollFadeIn>
+          <div className="space-y-5">
+            {[
+              { q: "Quel est le meilleur logiciel de comptabilité pour freelance ?", a: "Indy, Pennylane et Freebe sont les plus populaires. Indy est idéal pour les micro-entrepreneurs, Pennylane pour ceux qui veulent un expert-comptable intégré." },
+              { q: "Quelle banque pro choisir en freelance ?", a: "Qonto, Shine et Revolut Business sont les choix principaux. Shine est pensé pour les indépendants, Qonto offre plus de fonctionnalités." },
+              { q: "Faut-il une assurance RC Pro en freelance ?", a: "Elle n'est pas toujours obligatoire mais fortement recommandée. Hiscox et Simplis proposent des offres à partir de 15€/mois." },
+              { q: "Portage salarial ou micro-entreprise ?", a: "La micro-entreprise est plus simple et moins chère. Le portage offre la protection du salariat mais prend 5-10% de commission." },
+              { q: "Comment facturer en tant que freelance ?", a: "Utilisez un outil comme Freebe, Henrri ou Indy. Mentions obligatoires : numéro SIRET, conditions de paiement, TVA si applicable." },
+            ].map((faq, i) => (
+              <ScrollFadeIn key={i} delay={i * 80}>
+                <div className="glass-card rounded-2xl p-6">
+                  <h3 className="font-bold text-lg text-stone-200 mb-2">{faq.q}</h3>
+                  <p className="text-stone-400 leading-relaxed">{faq.a}</p>
+                </div>
+              </ScrollFadeIn>
+            ))}
           </div>
         </div>
       </section>
