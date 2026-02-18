@@ -9,6 +9,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
 
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+    }
+
     const { error } = await supabase.from('freelancestack_leads').insert({
       name: name || null,
       email,
