@@ -241,8 +241,6 @@ Comet est sélectif : environ 30% des candidatures sont acceptées.
     readTime: "7 min",
     tags: ["clients", "malt", "comet", "missions"],
   },
-];
-
   {
     title: "Meilleur logiciel de facturation freelance 2026",
     slug: "meilleur-logiciel-facturation-freelance-2026",
