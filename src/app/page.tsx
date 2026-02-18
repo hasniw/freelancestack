@@ -4,6 +4,7 @@ import { tools, categories } from "@/data/tools";
 import { blogPosts } from "@/data/blog";
 import ToolCard from "@/components/ToolCard";
 import ScrollFadeIn from "@/components/ScrollFadeIn";
+import NewsletterForm from "@/components/NewsletterForm";
 
 const HeroScene = dynamic(() => import("@/components/HeroScene"), { ssr: false });
 
@@ -144,6 +145,23 @@ export default function Home() {
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <section className="py-24 bg-[#0d1117]/50">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <ScrollFadeIn>
+            <p className="text-emerald-400 text-sm font-semibold tracking-wide uppercase mb-2">Newsletter</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-stone-100 font-display">
+              Restez informé
+            </h2>
+            <p className="text-stone-400 mb-8 max-w-xl mx-auto">
+              Recevez les meilleurs outils et conseils pour freelances, directement dans votre boîte mail.
+            </p>
+            <NewsletterForm />
+            <p className="text-xs text-stone-600 mt-4">Pas de spam. Désinscription en un clic.</p>
+          </ScrollFadeIn>
         </div>
       </section>
     </>
